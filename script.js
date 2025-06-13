@@ -1,209 +1,157 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const baseMultipliers = [1, 2, 3];
-  const categoryQuirks = {
-    "Fashion & Apparel": ["🔄 Frequent returns", "📏 Sizing complexity"],
-    "Food & Drink": ["🔗 Integrating with third party apps e.g. Bundles/Subscriptions", "🍷 Age verification deliveries", "❄️ Temperature controlled deliveries"],
-    "Health & Beauty": ["⚠️ Hazardous goods restrictions", "🎁 Sensitive packaging"],
-    "Other": ["⚖️ Bulky items", "⏰ Irregular delivery times"]
-  };
-
   const categories = {
     "Fashion & Apparel": {
-      similarBusiness: {
-        name: "Holland's Country Clothing",
-        image: "https://cdn.prod.website-files.com/66977bd785453b9d7b04a8bc/66b4ac80a2384710e0e4b73b_Holland%27s%20Country%20Clothing-p-500.png",
-        url: "https://www.zenstores.com/case-study/hollands-country-clothing"
-      }
+      challenges: [
+        "High return rates slow your fulfilment",
+        "Size and style variations increase errors",
+        "Seasonal demand spikes cause stress"
+      ],
+      quirks: [
+        "Complex sizing charts",
+        "Frequent promotions",
+        "Multiple SKUs per style"
+      ],
+      uplift: 12000
     },
     "Food & Drink": {
-      similarBusiness: {
-        name: "Arbor Ales",
-        image: "https://cdn.prod.website-files.com/66977bd785453b9d7b04a8bc/66b4b425b091117c133ee9ac_case-study-arbor-ales-p-800.png",
-        url: "https://www.zenstores.com/case-study/arbor-ales"
-      }
+      challenges: [
+        "Perishability demands fast turnaround",
+        "Temperature control increases costs",
+        "Strict packaging requirements"
+      ],
+      quirks: [
+        "Short shelf life",
+        "Custom packaging",
+        "Regulatory compliance"
+      ],
+      uplift: 9000
     },
     "Health & Beauty": {
-      similarBusiness: {
-        name: "The Vitamin",
-        image: "https://cdn.prod.website-files.com/66977bd785453b9d7b04a8bc/66b4b67b0341cd7e7e5e941a_The%20Vitamin-p-500.png",
-        url: "https://www.zenstores.com/case-study/the-vitamin"
-      }
+      challenges: [
+        "Strict labelling and regulations",
+        "High SKU diversity",
+        "Seasonal trends affect stock levels"
+      ],
+      quirks: [
+        "Sensitive products handling",
+        "Batch tracking",
+        "Customer allergies"
+      ],
+      uplift: 10000
     },
-    "Other": {
-      similarBusiness: {
-        name: "FNX Bathrooms",
-        image: "https://cdn.prod.website-files.com/66977bd785453b9d7b04a8bc/66b477a18735bf49ed0e7737_FNX%20Bathrooms.png",
-        url: "https://www.zenstores.com/case-study/fnx-bathrooms"
-      }
+    Other: {
+      challenges: [
+        "General shipping delays",
+        "Inventory inaccuracies",
+        "Customer communication gaps"
+      ],
+      quirks: [
+        "Varied product types",
+        "Multiple warehouse locations",
+        "Complex shipping zones"
+      ],
+      uplift: 8000
     }
   };
 
-  let selectedCategory = "Fashion & Apparel";
-  const ordersSlider = document.getElementById("orders");
-  const orderValue = document.getElementById("orderValue");
-  const personaMessage = document.getElementById("personaMessage");
+  // Elements
+  const categoryButtons = document.querySelectorAll(".category-btn");
+  const orderSlider = document.getElementById("orders");
+  const orderValueDisplay = document.getElementById("orderValue");
   const challengesContainer = document.getElementById("challengesContainer");
   const quirksContainer = document.getElementById("quirksContainer");
-  const similarBusinessesContainer = document.getElementById("similarBusinesses");
-  const categoryButtons = document.querySelectorAll(".category-btn");
-  const sizeLine = document.getElementById("size-of-problem");
-  const interactiveArea = document.getElementById("interactive-area");
+  const upliftAmount = document.querySelector(".uplift-amount .amount");
 
-  // === Glow effect on page load ===
-  interactiveArea.classList.add("glow");
+  // Current state
+  let currentCategory = "Fashion & Apparel";
+  let currentOrders = 250;
 
-  // Function to stop glow on first user interaction
-  function stopGlow() {
-    interactiveArea.classList.remove("glow");
-    categoryButtons.forEach(btn => btn.removeEventListener("click", stopGlow));
-    ordersSlider.removeEventListener("input", stopGlow);
+  // Initialize slider max and step based on your previous slider settings
+  // (You can adjust max value and steps here as needed)
+  orderSlider.min = 0;
+  orderSlider.max = 40;
+  orderSlider.step = 1;
+
+  // Convert slider value (0-40) to actual monthly shipment volume:
+  // For demo, we multiply by 50 + base 250, so 0 = 250 orders, max = 40*50+250=2250
+  function calculateOrdersFromSlider(value) {
+    return 250 + value * 50;
   }
 
-  // Stop glow on any category button click
-  categoryButtons.forEach(btn => btn.addEventListener("click", stopGlow));
-
-  // Stop glow on slider input change
-  ordersSlider.addEventListener("input", stopGlow);
-
-  // === Your existing functions ===
-
-  function getOrderCount(v) {
-    if (v <= 10) return v * 250;
-    if (v <= 25) return 2500 + (v - 10) * 500;
-    return 10000 + (v - 25) * 1000;
+  // Update displayed shipment volume
+  function updateOrderDisplay(value) {
+    orderValueDisplay.textContent = value.toLocaleString();
   }
 
-  function animateValue(el, start, end, duration = 800, prefix = "£") {
-    let startTime = null;
-    const step = (t) => {
-      if (!startTime) startTime = t;
-      const prog = Math.min((t - startTime) / duration, 1);
-      const value = Math.floor(start + (end - start) * prog);
-      el.textContent = `${prefix}${value.toLocaleString()}`;
-      if (prog < 1) requestAnimationFrame(step);
-    };
-    requestAnimationFrame(step);
-  }
-
-  function updateUI() {
-    const v = parseInt(ordersSlider.value);
-    const count = getOrderCount(v);
-    orderValue.textContent = count.toLocaleString();
-
-    // Challenges
+  // Update challenges list
+  function updateChallenges(category) {
     challengesContainer.innerHTML = "";
-    let total = 0;
-
-    baseMultipliers.forEach((mult, i) => {
-      const prev = document.getElementById(`challenge-${i}`);
-      const prevVal = prev?.dataset?.value * 1 || 0;
-      let val;
-
-      if (i === 0) {
-        // Challenge 1: Manual or poor fitting fulfilment solutions
-        const oldTime = count / 15;
-        const newTime = count / 60;
-        const wage = 12;
-        val = Math.round((oldTime - newTime) * wage);
-      } else if (i === 1) {
-        // Challenge 2: Pick & Pack errors
-        const errorRateCurrent = 0.02;
-        const errorRateOptimised = 0.005;
-        const costPerError = 50;
-        val = Math.round((count * errorRateCurrent * costPerError) - (count * errorRateOptimised * costPerError));
-      } else if (i === 2) {
-        // Challenge 3: Missed orders due to poor delivery experience
-        const aov = 50;
-        const baselineConversionRate = 0.03;
-        const upliftedConversionRate = baselineConversionRate * 1.05;
-        const visitors = count / baselineConversionRate;
-        const newOrders = visitors * upliftedConversionRate;
-        const extraOrders = Math.round(newOrders - count);
-        val = extraOrders * aov;
-      }
-
-      total += val;
-
+    categories[category].challenges.forEach(challenge => {
       const li = document.createElement("li");
-      const span = document.createElement("span");
-      span.id = `challenge-${i}`;
-      span.dataset.value = val;
-      li.innerHTML = `<strong>${["🛠️ Manual or poor fitting fulfilment solutions", "📦 Pick & Pack errors", "❌ Missed orders due to poor delivery experience"][i]}:</strong> `;
-      li.appendChild(span);
+      li.textContent = challenge;
       challengesContainer.appendChild(li);
-      animateValue(span, prevVal, val);
     });
+  }
 
-    // Total size of the prize
-    const prevTot = sizeLine.dataset.value * 1 || 0;
-    sizeLine.dataset.value = total;
-    let vs = sizeLine.querySelector("span");
-    if (!vs) {
-      vs = document.createElement("span");
-      sizeLine.textContent = "Size of the prize: ";
-      sizeLine.appendChild(vs);
-    }
-    animateValue(vs, prevTot, total);
-
-    // Quirks
+  // Update quirks list
+  function updateQuirks(category) {
     quirksContainer.innerHTML = "";
-    const quirksHeading = document.getElementById("quirksHeading");
-    if (quirksHeading) {
-      quirksHeading.textContent =
-        selectedCategory === "Other"
-          ? "What we often hear from ecommerce brands"
-          : `What makes ${selectedCategory} fulfilment tricky?`;
-    }
-
-    (categoryQuirks[selectedCategory] || []).forEach(q => {
+    categories[category].quirks.forEach(quirk => {
       const li = document.createElement("li");
-      li.textContent = q;
+      li.textContent = quirk;
       quirksContainer.appendChild(li);
     });
-
-    // Similar business
-    similarBusinessesContainer.innerHTML = "";
-
-    const heading = document.createElement("h4");
-    heading.textContent =
-      selectedCategory === "Other"
-        ? "Other brands we've helped"
-        : `Other ${selectedCategory} brands we've helped`;
-    similarBusinessesContainer.appendChild(heading);
-
-    const biz = categories[selectedCategory]?.similarBusiness;
-    if (biz) {
-      const a = document.createElement("a");
-      a.href = biz.url;
-      a.target = "_blank";
-      a.classList.add("case-study-card");
-      const img = document.createElement("img");
-      img.src = biz.image;
-      img.alt = biz.name;
-      a.appendChild(img);
-      similarBusinessesContainer.appendChild(a);
-    }
   }
 
-  // Attach UI events
-let debounceTimeout;
+  // Update revenue uplift
+  function updateUplift(category, orders) {
+    // Simple formula: uplift * (orders / 1000)
+    const baseUplift = categories[category].uplift;
+    const estimatedUplift = Math.round(baseUplift * (orders / 1000));
+    upliftAmount.textContent = `£${estimatedUplift.toLocaleString()}`;
+  }
 
-ordersSlider.addEventListener("input", () => {
-  clearTimeout(debounceTimeout);
-  debounceTimeout = setTimeout(() => {
-    updateUI();
-  }, 250); // delay in ms
-});
+  // Set selected category button styling
+  function updateCategorySelection(newCategory) {
+    categoryButtons.forEach(btn => {
+      if (btn.dataset.category === newCategory) {
+        btn.classList.add("selected");
+      } else {
+        btn.classList.remove("selected");
+      }
+    });
+  }
 
+  // On category button click
   categoryButtons.forEach(btn => {
     btn.addEventListener("click", () => {
-      categoryButtons.forEach(b => b.classList.remove("selected"));
-      btn.classList.add("selected");
-      selectedCategory = btn.dataset.category;
-      updateUI();
+      const selected = btn.dataset.category;
+      if (selected !== currentCategory) {
+        currentCategory = selected;
+        updateCategorySelection(currentCategory);
+        updateChallenges(currentCategory);
+        updateQuirks(currentCategory);
+        updateUplift(currentCategory, currentOrders);
+      }
     });
   });
 
-  // Initial render
-  updateUI();
+  // On slider change
+  orderSlider.addEventListener("input", () => {
+    currentOrders = calculateOrdersFromSlider(orderSlider.value);
+    updateOrderDisplay(currentOrders);
+    updateUplift(currentCategory, currentOrders);
+  });
+
+  // Initialize UI
+  function init() {
+    updateCategorySelection(currentCategory);
+    currentOrders = calculateOrdersFromSlider(orderSlider.value);
+    updateOrderDisplay(currentOrders);
+    updateChallenges(currentCategory);
+    updateQuirks(currentCategory);
+    updateUplift(currentCategory, currentOrders);
+  }
+
+  init();
 });
