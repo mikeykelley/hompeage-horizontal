@@ -29,7 +29,7 @@ body {
   width: 100%;
 }
 
-/* Central rounded box styled like Mailreach's focus container */
+/* Central rounded box */
 .central-box {
   background: var(--zen-black);
   border-radius: 20px;
@@ -62,11 +62,13 @@ body {
   box-sizing: border-box;
 }
 
+/* Title for central element */
 .calculator h2 {
   font-weight: 700;
   font-size: 2rem;
   margin-bottom: 12px;
   color: var(--zen-white);
+  justify-content: center;
 }
 
 .business-category p {
