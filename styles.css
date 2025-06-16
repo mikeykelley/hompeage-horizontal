@@ -1,200 +1,122 @@
-/* Color scheme */
 :root {
-  --zen-pink-light: #FFEFEB;
-  --zen-pink: #FFDFD7;
-  --zen-pink-standard: #FFBEAF;
-  --zen-black: #052424;
+  --zen-pink: #ffebe7;
   --zen-blue: #283CFF;
+  --zen-accent: #FFBEAF;
+  --font-family: 'Inter', sans-serif;
 }
 
-/* Base styles */
-body {
+* {
+  box-sizing: border-box;
+}
+
+body, html {
   margin: 0;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: var(--zen-pink-light);
-  color: var(--zen-black);
+  padding: 0;
+  height: 200vh; /* enough height to scroll */
+  font-family: var(--font-family);
+  background: #fff;
+  display: flex;
+  flex-direction: row;
+  height: 100vh;
+  overflow-x: hidden;
 }
 
 .page-container {
   display: flex;
+  width: 100vw;
   height: 100vh;
-  overflow: hidden;
 }
 
-/* Calculator container on left side */
+/* Left side: calculator container */
 .calculator-container {
   flex: 0 0 70%;
-  background: white;
-  padding: 40px 60px;
+  padding: 40px;
   overflow-y: auto;
-  box-shadow: 0 0 50px rgba(40, 60, 255, 0.1);
+  background: #f9f9f9;
 }
 
-/* Homepage intro and snake on right */
-.homepage-intro-snake {
+/* Heading style */
+.calculator-container h1 {
+  margin-top: 0;
+  font-weight: 700;
+  font-size: 2.5rem;
+  color: var(--zen-blue);
+  user-select: none;
+}
+
+/* Category selector */
+.category-selector,
+.order-slider,
+.aov-input {
+  margin: 1.5rem 0;
+  font-size: 1.1rem;
+  user-select: none;
+}
+
+.category-selector label,
+.order-slider label,
+.aov-input label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  color: var(--zen-blue);
+}
+
+.category-selector select,
+.order-slider input[type="range"],
+.aov-input input[type="number"] {
+  width: 100%;
+  padding: 0.5rem;
+  font-size: 1rem;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  appearance: none;
+  background: white;
+  transition: border-color 0.3s ease;
+}
+
+.category-selector select:focus,
+.order-slider input[type="range"]:focus,
+.aov-input input[type="number"]:focus {
+  outline: none;
+  border-color: var(--zen-blue);
+}
+
+/* Display orders value */
+#ordersValue {
+  font-weight: 700;
+  margin-left: 0.5rem;
+  color: var(--zen-accent);
+}
+
+/* Results section */
+.results {
+  margin-top: 3rem;
+  padding: 2rem;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  color: #333;
+  font-size: 1.2rem;
+  min-height: 150px;
+  user-select: none;
+}
+
+/* Right side: snake container */
+.snake-container {
   flex: 0 0 30%;
   background: var(--zen-pink);
   display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: 40px 20px;
-  position: relative;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  padding: 0;
+  margin: 0;
   overflow: hidden;
-}
-
-/* Homepage intro content */
-.homepage-intro {
-  flex: 1 1 auto;
-}
-
-.homepage-intro h1 {
-  font-weight: 700;
-  font-size: 1.8rem;
-  line-height: 1.3;
-  margin-bottom: 1rem;
-  color: var(--zen-black);
-}
-
-.homepage-intro p {
-  font-size: 1rem;
-  line-height: 1.5;
-  margin-bottom: 2rem;
-}
-
-.buttons-row {
-  display: flex;
-  gap: 10px;
-  margin-bottom: 1rem;
-}
-
-.btn {
-  background-color: var(--zen-pink-standard);
-  border: none;
-  padding: 12px 20px;
-  border-radius: 25px;
-  cursor: pointer;
-  font-weight: 600;
-  font-size: 0.9rem;
-  color: var(--zen-black);
-  transition: background-color 0.3s ease;
-}
-
-.btn:hover {
-  background-color: var(--zen-pink);
-}
-
-/* Reviews row images */
-.reviews-row img {
-  width: 80px;
-  margin-right: 10px;
-}
-
-/* Snake tracker styles */
-#snakeTracker {
-  position: relative;
-  width: 40px;
-  height: 100%;
-  margin-top: 20px;
-  align-self: flex-start;
 }
 
 #snakeSvg {
   width: 40px;
-  height: 100%;
+  height: 90vh;
   display: block;
-}
-
-#snakePath {
-  stroke: var(--zen-blue);
-  stroke-width: 8;
-  stroke-linecap: round;
-}
-
-#snakeProgress {
-  stroke: var(--zen-pink-standard);
-  stroke-width: 8;
-  stroke-linecap: round;
-  transition: stroke-dashoffset 0.3s ease-out;
-}
-
-/* Calculator styling: keep your existing styles but add overflow scroll */
-.calculator {
-  max-height: 100%;
-  overflow-y: auto;
-}
-
-/* Glow effect for interactive area */
-#interactive-area.glow {
-  box-shadow: 0 0 25px 4px var(--zen-pink-standard);
-  border-radius: 8px;
-  padding: 20px;
-  background: #fff;
-}
-
-/* Category buttons */
-.category-buttons {
-  display: flex;
-  gap: 12px;
-}
-
-.category-btn {
-  border: none;
-  background: var(--zen-pink-light);
-  padding: 12px 15px;
-  border-radius: 8px;
-  cursor: pointer;
-  font-size: 0.9rem;
-  text-align: center;
-  transition: background-color 0.3s ease;
-  user-select: none;
-}
-
-.category-btn.selected {
-  background: var(--zen-pink-standard);
-  box-shadow: 0 0 10px var(--zen-pink-standard);
-}
-
-/* Range slider styling */
-input[type="range"] {
-  width: 100%;
-  margin: 12px 0 24px;
-}
-
-/* Divider line */
-.divider {
-  border: none;
-  border-top: 1px solid #eee;
-  margin: 20px 0;
-}
-
-/* Challenges and quirks lists */
-.challenges-list, .quirks-list {
-  list-style-type: disc;
-  padding-left: 20px;
-}
-
-/* Revenue uplift box */
-.revenue-uplift-box {
-  background: var(--zen-pink-light);
-  padding: 15px;
-  border-radius: 8px;
-  text-align: center;
-  font-weight: 700;
-  font-size: 1.2rem;
-  color: var(--zen-pink-standard);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-}
-
-.arrow-icon {
-  fill: var(--zen-pink-standard);
-}
-
-/* Similar businesses container */
-.similar-businesses-container {
-  margin-top: 20px;
-  font-size: 0.9rem;
-  color: var(--zen-black);
 }
