@@ -1,100 +1,51 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Zenstores Homepage with Calculator</title>
-  <link rel="stylesheet" href="styles.css" />
-</head>
-<body>
-  <div class="page-container">
-    <!-- Calculator on left (65%) -->
-    <section class="calculator-container">
-      <div class="calculator current-logic">
-        <h2>Why should you care?</h2>
-
-        <!-- Wrap interactive area for glow -->
-        <div id="interactive-area">
-          <!-- Category -->
-          <div class="business-category">
-            <p>Select your business category:</p>
-            <div class="category-buttons">
-              <button data-category="Fashion & Apparel" class="category-btn selected" title="Fashion & Apparel">
-                👗<br /><span>Fashion & Apparel</span>
-              </button>
-              <button data-category="Food & Drink" class="category-btn" title="Food & Drink">
-                🍔<br /><span>Food & Drink</span>
-              </button>
-              <button data-category="Health & Beauty" class="category-btn" title="Health & Beauty">
-                💄<br /><span>Health & Beauty</span>
-              </button>
-              <button data-category="Other" class="category-btn" title="Other">
-                🏡<br /><span>Other</span>
-              </button>
-            </div>
-          </div>
-
-          <!-- Monthly orders -->
-          <label for="orders">Monthly Shipment Volume: <span id="orderValue">250</span></label>
-          <input type="range" id="orders" min="0" max="40" step="1" />
-          
-        </div>
-        <!-- End glow container -->
-          
-        <hr class="divider" />
-
-        <h3>The hidden hurdles holding back growth:</h3>
-        <ul id="challengesContainer" class="challenges-list"></ul>
-
-        <div id="size-of-problem" class="revenue-uplift-box" data-value="0">
-          <p class="uplift-label">Estimated yearly missed revenue</p>
-          <div class="uplift-amount">
-            <svg class="arrow-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M6 6L18 18M18 18H10M18 18V10" stroke="#C41E3A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-            <span class="amount">£0</span>
-          </div>
-        </div>
-
-        <hr class="divider" />
-
-        <h3 id="quirksHeading">Your quirks</h3>
-        <ul id="quirksContainer" class="quirks-list"></ul>
-
-        <div id="similarBusinesses" class="similar-businesses-container"></div>
-      </div> <!-- close .calculator -->
-    </section> <!-- close .calculator-container -->
-
-    <!-- Progress Tracker on right (35%) -->
-    <section class="progress-tracker-container">
-      <div class="snake-container">
-        <svg class="snake-svg" width="50" height="500" viewBox="0 0 50 500" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <path id="snake-path" fill="none" stroke="#C41E3A" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" 
-            d="M25 480
-               Q 45 450 25 420
-               Q 5 390 25 360
-               Q 45 330 25 300
-               Q 5 270 25 240
-               Q 45 210 25 180
-               Q 5 150 25 120
-               Q 45 90  25 60
-               Q 5 30   25 0" />
-        </svg>
-        <div class="progress-dots">
-          <div class="dot active" style="top: 480px;"></div>
-          <div class="dot" style="top: 420px;"></div>
-          <div class="dot" style="top: 360px;"></div>
-          <div class="dot" style="top: 300px;"></div>
-          <div class="dot" style="top: 240px;"></div>
-          <div class="dot" style="top: 180px;"></div>
-          <div class="dot" style="top: 120px;"></div>
-          <div class="dot" style="top: 60px;"></div>
-          <div class="dot" style="top: 0px;"></div>
+<section class="why-care-section">
+  <div class="why-care-container">
+    <!-- Left: selectors -->
+    <div class="selectors-panel">
+      <h2>Why should you care?</h2>
+      <div class="business-category">
+        <p>Select your business category:</p>
+        <div class="category-buttons">
+          <button data-category="Fashion & Apparel" class="category-btn selected" title="Fashion & Apparel">
+            👗<br /><span>Fashion & Apparel</span>
+          </button>
+          <button data-category="Food & Drink" class="category-btn" title="Food & Drink">
+            🍔<br /><span>Food & Drink</span>
+          </button>
+          <button data-category="Health & Beauty" class="category-btn" title="Health & Beauty">
+            💄<br /><span>Health & Beauty</span>
+          </button>
+          <button data-category="Other" class="category-btn" title="Other">
+            🏡<br /><span>Other</span>
+          </button>
         </div>
       </div>
-    </section>
-  </div> <!-- close .page-container -->
 
-  <script src="script.js"></script>
-</body>
-</html>
+      <label for="orders-range">Monthly Shipment Volume: <span id="orderValue">250</span></label>
+      <input type="range" id="orders-range" min="0" max="40" step="1" value="10" />
+    </div>
+
+    <!-- Right: dynamic content -->
+    <div class="dynamic-content-panel">
+      <h3>The hidden hurdles holding back growth:</h3>
+      <ul id="challengesContainer" class="challenges-list"></ul>
+
+      <div id="size-of-problem" class="revenue-uplift-box" data-value="0">
+        <p class="uplift-label">Estimated yearly missed revenue</p>
+        <div class="uplift-amount">
+          <svg class="arrow-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M6 6L18 18M18 18H10M18 18V10" stroke="#C41E3A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span class="amount">£0</span>
+        </div>
+      </div>
+
+      <hr class="divider" />
+
+      <h3>Your quirks</h3>
+      <ul id="quirksContainer" class="quirks-list"></ul>
+
+      <div id="similarBusinesses" class="similar-businesses-container"></div>
+    </div>
+  </div>
+</section>
