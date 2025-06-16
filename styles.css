@@ -68,7 +68,7 @@ body {
   font-size: 2rem;
   margin-bottom: 12px;
   color: var(--zen-white);
-  justify-content: center;
+  align-items: center; /* vertically center */
 }
 
 .business-category p {
