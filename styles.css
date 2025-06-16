@@ -1,97 +1,200 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Zenstores Homepage with Calculator + Snake Tracker</title>
-  <link rel="stylesheet" href="styles.css" />
-</head>
-<body>
-  <div class="page-container">
-    <!-- Left side: calculator (was right) -->
-    <section class="calculator-container">
-      <div class="calculator current-logic">
-        <h2>Why should you care?</h2>
+/* Color scheme */
+:root {
+  --zen-pink-light: #FFEFEB;
+  --zen-pink: #FFDFD7;
+  --zen-pink-standard: #FFBEAF;
+  --zen-black: #052424;
+  --zen-blue: #283CFF;
+}
 
-        <!-- Wrap interactive area for glow -->
-        <div id="interactive-area">
-          <!-- Category -->
-          <div class="business-category">
-            <p>Select your business category:</p>
-            <div class="category-buttons">
-              <button data-category="Fashion & Apparel" class="category-btn selected" title="Fashion & Apparel">
-                👗<br /><span>Fashion & Apparel</span>
-              </button>
-              <button data-category="Food & Drink" class="category-btn" title="Food & Drink">
-                🍔<br /><span>Food & Drink</span>
-              </button>
-              <button data-category="Health & Beauty" class="category-btn" title="Health & Beauty">
-                💄<br /><span>Health & Beauty</span>
-              </button>
-              <button data-category="Other" class="category-btn" title="Other">
-                🏡<br /><span>Other</span>
-              </button>
-            </div>
-          </div>
+/* Base styles */
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: var(--zen-pink-light);
+  color: var(--zen-black);
+}
 
-          <!-- Monthly orders -->
-          <label for="orders">Monthly Shipment Volume: <span id="orderValue">250</span></label>
-          <input type="range" id="orders" min="0" max="40" step="1" />
-          
-        </div>
-        <!-- End glow container -->
-          
-        <hr class="divider" />
+.page-container {
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+}
 
-        <h3>The hidden hurdles holding back growth:</h3>
-        <ul id="challengesContainer" class="challenges-list"></ul>
+/* Calculator container on left side */
+.calculator-container {
+  flex: 0 0 70%;
+  background: white;
+  padding: 40px 60px;
+  overflow-y: auto;
+  box-shadow: 0 0 50px rgba(40, 60, 255, 0.1);
+}
 
-        <div id="size-of-problem" class="revenue-uplift-box" data-value="0">
-          <p class="uplift-label">Estimated yearly missed revenue</p>
-          <div class="uplift-amount">
-            <svg class="arrow-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M6 6L18 18M18 18H10M18 18V10" stroke="#C41E3A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-            <span class="amount">£0</span>
-          </div>
-        </div>
+/* Homepage intro and snake on right */
+.homepage-intro-snake {
+  flex: 0 0 30%;
+  background: var(--zen-pink);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 40px 20px;
+  position: relative;
+  overflow: hidden;
+}
 
-        <hr class="divider" />
+/* Homepage intro content */
+.homepage-intro {
+  flex: 1 1 auto;
+}
 
-        <h3 id="quirksHeading">Your quirks</h3>
-        <ul id="quirksContainer" class="quirks-list"></ul>
+.homepage-intro h1 {
+  font-weight: 700;
+  font-size: 1.8rem;
+  line-height: 1.3;
+  margin-bottom: 1rem;
+  color: var(--zen-black);
+}
 
-        <div id="similarBusinesses" class="similar-businesses-container"></div>
-      </div> <!-- close .calculator -->
-    </section> <!-- close .calculator-container -->
+.homepage-intro p {
+  font-size: 1rem;
+  line-height: 1.5;
+  margin-bottom: 2rem;
+}
 
-    <!-- Right side: homepage intro + snake tracker -->
-    <section class="homepage-intro-snake">
-      <section class="homepage-intro">
-        <h1>Upgrade your shipping. <br /><em><strong>From checkout to dispatch.</strong></em></h1>
-        <p>Zenstores connects your checkout with how you actually ship orders. Unlock smarter delivery, faster fulfilment, and big savings on postage - all through one seamless integration.</p>
+.buttons-row {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 1rem;
+}
 
-        <div class="buttons-row">
-          <button class="btn get-started">Get Started</button>
-          <button class="btn see-action">See it in action</button>
-        </div>
+.btn {
+  background-color: var(--zen-pink-standard);
+  border: none;
+  padding: 12px 20px;
+  border-radius: 25px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--zen-black);
+  transition: background-color 0.3s ease;
+}
 
-        <div class="reviews-row">
-          <img src="https://cdn.prod.website-files.com/66977bd785453b9d7b04a8b2/6697d0e5c72c34008b472ec1_review-stars-shopifyappstore.svg" alt="Shopify App Store Reviews" />
-          <img src="https://cdn.prod.website-files.com/66977bd785453b9d7b04a8b2/6697d0e55dec634b9685e7bf_review-stars-capterra.svg" alt="Capterra Reviews" />
-        </div>
-      </section>
+.btn:hover {
+  background-color: var(--zen-pink);
+}
 
-      <!-- Snake progress tracker container -->
-      <div id="snakeTracker">
-        <svg id="snakeSvg" width="40" height="100%" viewBox="0 0 40 1000" preserveAspectRatio="none">
-          <path id="snakePath" d="M20 0 L20 1000" stroke="#283CFF" stroke-width="8" fill="none" stroke-linecap="round" />
-          <path id="snakeProgress" d="M20 0 L20 1000" stroke="#FFBEAF" stroke-width="8" fill="none" stroke-linecap="round" stroke-dasharray="1000" stroke-dashoffset="1000"/>
-        </svg>
-      </div>
-    </section>
-  </div> <!-- close .page-container -->
+/* Reviews row images */
+.reviews-row img {
+  width: 80px;
+  margin-right: 10px;
+}
 
-  <script src="script.js"></script>
-</body>
-</html>
+/* Snake tracker styles */
+#snakeTracker {
+  position: relative;
+  width: 40px;
+  height: 100%;
+  margin-top: 20px;
+  align-self: flex-start;
+}
+
+#snakeSvg {
+  width: 40px;
+  height: 100%;
+  display: block;
+}
+
+#snakePath {
+  stroke: var(--zen-blue);
+  stroke-width: 8;
+  stroke-linecap: round;
+}
+
+#snakeProgress {
+  stroke: var(--zen-pink-standard);
+  stroke-width: 8;
+  stroke-linecap: round;
+  transition: stroke-dashoffset 0.3s ease-out;
+}
+
+/* Calculator styling: keep your existing styles but add overflow scroll */
+.calculator {
+  max-height: 100%;
+  overflow-y: auto;
+}
+
+/* Glow effect for interactive area */
+#interactive-area.glow {
+  box-shadow: 0 0 25px 4px var(--zen-pink-standard);
+  border-radius: 8px;
+  padding: 20px;
+  background: #fff;
+}
+
+/* Category buttons */
+.category-buttons {
+  display: flex;
+  gap: 12px;
+}
+
+.category-btn {
+  border: none;
+  background: var(--zen-pink-light);
+  padding: 12px 15px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  text-align: center;
+  transition: background-color 0.3s ease;
+  user-select: none;
+}
+
+.category-btn.selected {
+  background: var(--zen-pink-standard);
+  box-shadow: 0 0 10px var(--zen-pink-standard);
+}
+
+/* Range slider styling */
+input[type="range"] {
+  width: 100%;
+  margin: 12px 0 24px;
+}
+
+/* Divider line */
+.divider {
+  border: none;
+  border-top: 1px solid #eee;
+  margin: 20px 0;
+}
+
+/* Challenges and quirks lists */
+.challenges-list, .quirks-list {
+  list-style-type: disc;
+  padding-left: 20px;
+}
+
+/* Revenue uplift box */
+.revenue-uplift-box {
+  background: var(--zen-pink-light);
+  padding: 15px;
+  border-radius: 8px;
+  text-align: center;
+  font-weight: 700;
+  font-size: 1.2rem;
+  color: var(--zen-pink-standard);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.arrow-icon {
+  fill: var(--zen-pink-standard);
+}
+
+/* Similar businesses container */
+.similar-businesses-container {
+  margin-top: 20px;
+  font-size: 0.9rem;
+  color: var(--zen-black);
+}
