@@ -1,10 +1,9 @@
-/* WHY CARE SECTION */
 .why-care-section {
   background: white;
   padding: 40px 30px;
   border-radius: 12px;
   max-width: 1200px;
-  margin: 0 auto 80px auto;
+  margin: 0 auto 80px;
   box-shadow: 0 12px 30px rgba(5, 36, 36, 0.15);
   box-sizing: border-box;
 }
@@ -28,21 +27,14 @@
   color: #052424;
 }
 
-.business-category p {
-  font-weight: 600;
-  margin-bottom: 12px;
-  font-size: 1.1rem;
-}
-
 .category-buttons {
   display: flex;
   gap: 16px;
-  margin-bottom: 30px;
   flex-wrap: wrap;
+  margin-bottom: 30px;
 }
 
 .category-btn {
-  box-sizing: border-box;
   border: 2px solid #FFBEAF;
   background: #FFEFEB;
   font-weight: 700;
@@ -53,9 +45,7 @@
   user-select: none;
   width: 120px;
   text-align: center;
-  transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, outline-color 0.3s ease;
-  outline: 2px solid transparent;
-  outline-offset: 0;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
   color: #052424;
 }
 
@@ -69,15 +59,12 @@
   background-color: #283CFF;
   color: white;
   border-color: #283CFF;
-  outline-color: rgba(40, 60, 255, 0.7);
-  outline-offset: 4px;
   box-shadow: 0 0 8px 2px rgba(40, 60, 255, 0.6);
 }
 
 .category-btn:hover:not(.selected) {
   background-color: #FFBEAF;
   border-color: #FFBEAF;
-  color: #052424;
 }
 
 #orders-range {
@@ -152,14 +139,13 @@
   border-radius: 10px;
   padding: 20px 24px;
   margin-bottom: 40px;
-  box-sizing: border-box;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   gap: 12px;
 }
 
-.revenue-uplift-box .uplift-label {
+.uplift-label {
   font-weight: 600;
   font-size: 1.1rem;
   color: #C41E3A;
