@@ -54,54 +54,53 @@
     },
   };
 
-  // Get DOM refs
   const categoryButtons = document.querySelectorAll(".category-btn");
   const challengesContainer = document.getElementById("challengesContainer");
   const quirksContainer = document.getElementById("quirksContainer");
   const similarBusinessesContainer = document.getElementById("similarBusinesses");
-  const upliftAmountEl = document.querySelector(".uplift-amount .amount");
+  const upliftAmountEl = document.getElementById("upliftAmount");
   const ordersRange = document.getElementById("orders-range");
   const orderValueLabel = document.getElementById("orderValue");
 
   let selectedCategory = "Fashion & Apparel";
 
-  // Update dynamic content based on current selections
   function updateContent() {
-    const ordersCount = parseInt(ordersRange.value) * 250; // slider * 250 = approx monthly orders
+    // Monthly orders is slider value * 250 (0 to 40 * 250 = 0 to 10,000)
+    const ordersCount = parseInt(ordersRange.value) * 250;
     orderValueLabel.textContent = ordersCount.toLocaleString();
 
     const data = categories[selectedCategory];
 
-    // Update challenges list
+    // Challenges list
     challengesContainer.innerHTML = "";
-    data.challenges.forEach((challenge) => {
+    data.challenges.forEach(challenge => {
       const li = document.createElement("li");
       li.textContent = challenge;
       challengesContainer.appendChild(li);
     });
 
-    // Update quirks list
+    // Quirks list
     quirksContainer.innerHTML = "";
-    data.quirks.forEach((quirk) => {
+    data.quirks.forEach(quirk => {
       const li = document.createElement("li");
       li.textContent = quirk;
       quirksContainer.appendChild(li);
     });
 
-    // Update estimated missed revenue (orders * missedRevenuePerOrder * 12 months)
+    // Estimated yearly missed revenue = monthly orders * missedRevenuePerOrder * 12
     const yearlyMissed = ordersCount * data.missedRevenuePerOrder * 12;
     upliftAmountEl.textContent = `£${yearlyMissed.toLocaleString()}`;
 
-    // Update similar businesses
+    // Similar businesses
     similarBusinessesContainer.innerHTML = "";
-    if (data.similar.length > 0) {
+    if (data.similar.length) {
       const heading = document.createElement("p");
       heading.textContent = "Similar businesses to yours:";
       heading.style.fontWeight = "600";
       heading.style.marginBottom = "8px";
       similarBusinessesContainer.appendChild(heading);
 
-      data.similar.forEach((name) => {
+      data.similar.forEach(name => {
         const div = document.createElement("div");
         div.classList.add("business-box");
         div.textContent = name;
@@ -110,20 +109,18 @@
     }
   }
 
-  // Handle category button click
-  categoryButtons.forEach((btn) => {
+  categoryButtons.forEach(btn => {
     btn.addEventListener("click", () => {
       if (btn.classList.contains("selected")) return;
-      categoryButtons.forEach((b) => b.classList.remove("selected"));
+      categoryButtons.forEach(b => b.classList.remove("selected"));
       btn.classList.add("selected");
       selectedCategory = btn.getAttribute("data-category");
       updateContent();
     });
   });
 
-  // Handle range slider change
   ordersRange.addEventListener("input", updateContent);
 
-  // Initial load
+  // Initialize on load
   updateContent();
 })();
