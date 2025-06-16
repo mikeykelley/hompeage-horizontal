@@ -7,65 +7,70 @@
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <div class="page-container">
+  <div class="page-wrapper">
+    <div class="central-box">
+      <div class="page-container">
 
-    <!-- Right side: calculator -->
-    <section class="calculator-container">
-      <div class="calculator current-logic">
-        <h2>Why should you care?</h2>
+        <!-- Right side: calculator -->
+        <section class="calculator-container">
+          <div class="calculator current-logic">
+            <h2>Why should you care?</h2>
 
-        <!-- Wrap interactive area for glow -->
-        <div id="interactive-area">
-          <!-- Category -->
-          <div class="business-category">
-            <p>Select your business category:</p>
-            <div class="category-buttons">
-              <button data-category="Fashion & Apparel" class="category-btn selected" title="Fashion & Apparel">
-                👗<br /><span>Fashion & Apparel</span>
-              </button>
-              <button data-category="Food & Drink" class="category-btn" title="Food & Drink">
-                🍔<br /><span>Food & Drink</span>
-              </button>
-              <button data-category="Health & Beauty" class="category-btn" title="Health & Beauty">
-                💄<br /><span>Health & Beauty</span>
-              </button>
-              <button data-category="Other" class="category-btn" title="Other">
-                🏡<br /><span>Other</span>
-              </button>
+            <!-- Wrap interactive area for glow -->
+            <div id="interactive-area">
+              <!-- Category -->
+              <div class="business-category">
+                <p>Select your business category:</p>
+                <div class="category-buttons">
+                  <button data-category="Fashion & Apparel" class="category-btn selected" title="Fashion & Apparel">
+                    👗<br /><span>Fashion & Apparel</span>
+                  </button>
+                  <button data-category="Food & Drink" class="category-btn" title="Food & Drink">
+                    🍔<br /><span>Food & Drink</span>
+                  </button>
+                  <button data-category="Health & Beauty" class="category-btn" title="Health & Beauty">
+                    💄<br /><span>Health & Beauty</span>
+                  </button>
+                  <button data-category="Other" class="category-btn" title="Other">
+                    🏡<br /><span>Other</span>
+                  </button>
+                </div>
+              </div>
+
+              <!-- Monthly orders -->
+              <label for="orders">Monthly Shipment Volume: <span id="orderValue">250</span></label>
+              <input type="range" id="orders" min="0" max="40" step="1" />
+              
             </div>
-          </div>
+            <!-- End glow container -->
+            
+            <hr class="divider" />
 
-          <!-- Monthly orders -->
-          <label for="orders">Monthly Shipment Volume: <span id="orderValue">250</span></label>
-          <input type="range" id="orders" min="0" max="40" step="1" />
-          
-</div>
-<!-- End glow container -->
-          
-<hr class="divider" />
+            <h3>The hidden hurdles holding back growth:</h3>
+            <ul id="challengesContainer" class="challenges-list"></ul>
 
-        <h3>The hidden hurdles holding back growth:</h3>
-        <ul id="challengesContainer" class="challenges-list"></ul>
+            <div id="size-of-problem" class="revenue-uplift-box" data-value="0">
+              <p class="uplift-label">Estimated yearly missed revenue</p>
+              <div class="uplift-amount">
+                <svg class="arrow-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M6 6L18 18M18 18H10M18 18V10" stroke="#C41E3A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span class="amount">£0</span>
+              </div>
+            </div>
 
-        <div id="size-of-problem" class="revenue-uplift-box" data-value="0">
-          <p class="uplift-label">Estimated yearly missed revenue</p>
-          <div class="uplift-amount">
-            <svg class="arrow-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M6 6L18 18M18 18H10M18 18V10" stroke="#C41E3A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-            <span class="amount">£0</span>
-          </div>
-        </div>
+            <hr class="divider" />
 
-          <hr class="divider" />
+            <h3 id="quirksHeading">Your quirks</h3>
+            <ul id="quirksContainer" class="quirks-list"></ul>
 
-        <h3 id="quirksHeading">Your quirks</h3>
-        <ul id="quirksContainer" class="quirks-list"></ul>
+            <div id="similarBusinesses" class="similar-businesses-container"></div>
+          </div> <!-- close .calculator -->
+        </section> <!-- close .calculator-container -->
 
-        <div id="similarBusinesses" class="similar-businesses-container"></div>
-      </div> <!-- close .calculator -->
-    </section> <!-- close .calculator-container -->
-  </div> <!-- close .page-container -->
+      </div> <!-- close .page-container -->
+    </div> <!-- close .central-box -->
+  </div> <!-- close .page-wrapper -->
   
   <script src="script.js"></script>
 </body>
