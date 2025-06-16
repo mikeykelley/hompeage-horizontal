@@ -7,9 +7,9 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div class="main-wrapper">
+  <div class="main-wrapper" style="display:flex; gap: 40px; max-width: 960px; margin: auto;">
     <!-- Left: Calculator -->
-    <div class="calculator-container">
+    <div class="calculator-container" style="flex: 1;">
       <h2>Shipping Cost Calculator</h2>
       <div class="business-category">
         <p>Select your business category:</p>
@@ -24,20 +24,27 @@
         <input type="range" id="orders" min="0" max="5000" value="1500">
         <div class="revenue-uplift-box">
           <div class="uplift-label">Estimated uplift:</div>
-          <div class="uplift-amount">+ £620 <svg class="arrow-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M17 7L7 17" stroke="currentColor" /><path d="M7 7h10v10" stroke="currentColor" /></svg></div>
+          <div class="uplift-amount">
+            + £620
+            <svg class="arrow-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke-width="2">
+              <path d="M17 7L7 17" stroke="currentColor" />
+              <path d="M7 7h10v10" stroke="currentColor" />
+            </svg>
+          </div>
         </div>
       </div>
     </div>
 
-    <!-- Right: Scroll Progress Snake -->
-    <div class="scroll-progress">
-      <div class="progress-line">
-        <div class="progress-indicator"></div>
-        <div class="progress-step" data-step="1">Category</div>
-        <div class="progress-step" data-step="2">Orders</div>
-        <div class="progress-step" data-step="3">Results</div>
+    <!-- Right: Snake Progress Tracker -->
+    <div class="snake-container" aria-label="Progress tracker" style="width: 100px; position: sticky; top: 40px; align-self: start;">
+      <div class="snake-line">
+        <div class="snake-line-fill"></div>
       </div>
+      <div class="snake-step" data-step="1" tabindex="0" aria-label="Step 1: Category"></div>
+      <div class="snake-step" data-step="2" tabindex="0" aria-label="Step 2: Orders"></div>
+      <div class="snake-step" data-step="3" tabindex="0" aria-label="Step 3: Results"></div>
     </div>
+  </div>
 
   <script src="script.js"></script>
 </body>
