@@ -15,27 +15,49 @@ body {
   color: var(--zen-black);
   display: flex;
   justify-content: center;
-  align-items: flex-start;
+  align-items: center; /* vertically center */
   min-height: 100vh;
+  padding: 20px; /* for some breathing room on small screens */
+  box-sizing: border-box;
 }
 
-.page-container {
+/* Wrapper to center the box with a max width */
+.page-wrapper {
   display: flex;
-  max-width: 1200px;
+  justify-content: center;
   width: 100%;
-  padding: 40px 20px;
-  gap: 60px;
+}
+
+/* Central rounded box styled like Mailreach's focus container */
+.central-box {
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  max-width: 600px;
+  width: 100%;
+  padding: 40px 48px;
   box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+}
+
+/* Container inside central box */
+.page-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  padding: 0;
+  max-width: none;
 }
 
 /* Right side */
 .calculator-container {
-  flex: 1;
-  max-width: 520px;
-  background: white;
-  border-radius: 12px;
-  padding: 16px;
-  box-shadow: 0 12px 30px rgba(5, 36, 36, 0.15);
+  width: 100%;
+  background: transparent; /* no background, handled by central-box */
+  border-radius: 0;
+  padding: 0;
+  box-shadow: none;
   box-sizing: border-box;
 }
 
@@ -57,16 +79,14 @@ body {
   margin-bottom: 20px;
 }
 
-/* Keep your .category-btn styling as is */
-
 .category-btn {
   box-sizing: border-box;
   border: 2px solid var(--zen-pink-standard);
   background: var(--zen-pink-light);
   font-weight: 700;
   font-size: 0.9rem;
-  padding: 10px 8px; /* increased top/bottom padding */
-  border-radius: 12px; /* slightly more rounded to match increased height */
+  padding: 10px 8px;
+  border-radius: 12px;
   cursor: pointer;
   user-select: none;
   width: 110px;
@@ -83,7 +103,6 @@ body {
   margin-top: 4px;
 }
 
-/* Selected state: glowing blue with outline */
 .category-btn.selected {
   background-color: var(--zen-blue);
   color: white;
@@ -93,7 +112,6 @@ body {
   box-shadow: 0 0 8px 2px rgba(40, 60, 255, 0.6);
 }
 
-/* Hover effect on unselected */
 .category-btn:hover:not(.selected) {
   background-color: var(--zen-pink-standard);
   border-color: var(--zen-pink-standard);
@@ -101,10 +119,10 @@ body {
 }
 
 #interactive-area {
-  padding: 10px; /* adds space inside the box */
-  border-radius: 8px; /* smooth corners */
-  background: white; /* or whatever your background is */
-  box-sizing: border-box; /* so padding doesn’t break layout */
+  padding: 10px;
+  border-radius: 8px;
+  background: white;
+  box-sizing: border-box;
 }
 
 #interactive-area.glow {
@@ -143,10 +161,9 @@ body {
   border-radius: 8px;
   margin-bottom: 2px;
   font-size: 0.95rem;
-  border-left: 4px solid var(--zen-blue); /* Optional: differentiate from challenges */
+  border-left: 4px solid var(--zen-blue);
 }
 
-/* Similar businesses */
 .similar-businesses-container {
   display: flex;
   flex-direction: column;
@@ -166,7 +183,7 @@ body {
   align-items: center;
 }
 
-/* --- SLIDER STYLES (simplified) --- */
+/* Slider styles */
 #orders {
   width: 100%;
   height: 6px;
@@ -175,7 +192,7 @@ body {
   outline: none;
   cursor: pointer;
   margin-bottom: 1rem;
-  -webkit-appearance: none; /* remove default Safari styling */
+  -webkit-appearance: none;
 }
 
 #orders::-webkit-slider-thumb {
@@ -183,95 +200,72 @@ body {
   width: 24px;
   height: 24px;
   background: var(--zen-blue);
-  border-radius: 50%;
   cursor: pointer;
-  border: none;
-  box-shadow: 0 0 8px rgba(40, 60, 255, 0.6);
-  margin-top: -1px; /* center the thumb vertically relative to track */
+  border-radius: 50%;
+  box-shadow: 0 0 10px rgba(40, 60, 255, 0.8);
+  border: 2px solid white;
+  margin-top: -9px;
+  transition: background-color 0.3s ease;
+}
+
+#orders::-moz-range-thumb {
+  width: 24px;
+  height: 24px;
+  background: var(--zen-blue);
+  cursor: pointer;
+  border-radius: 50%;
+  border: 2px solid white;
   transition: background-color 0.3s ease;
 }
 
 #orders:hover::-webkit-slider-thumb {
-  background-color: #1f33cc;
+  background: #162cd9;
 }
 
-/* ...existing styles... */
-
-.business-image {
-  width: 100%;
-  height: auto;
-  border-radius: 10px;
-  margin-top: 10px;
+#orders:hover::-moz-range-thumb {
+  background: #162cd9;
 }
 
-.problem-size-line {
-  font-size: 1.25rem;
-  font-weight: 600;
-  margin-bottom: 2.5rem;
-  color: #0070f3; /* Blue from the Get Started button */
-  margin: 1rem 0;
-}
-
-.similar-businesses-container {
-  max-width: 520px;
-  margin: 2rem auto;
-}
-
-.case-study-card {
-  display: block;
-  border-radius: 10px;
-  overflow: hidden;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.case-study-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-}
-
-.case-study-card img {
-  width: 100%;
-  height: auto;
-  display: block;
-}
-
+/* Revenue uplift box */
 .revenue-uplift-box {
   background: var(--zen-pink);
-  padding: 20px;
   border-radius: 12px;
-  margin: 20px 0;
-  text-align: center;
-  box-shadow: 0 4px 12px rgba(5, 36, 36, 0.1);
+  padding: 12px 20px;
+  margin-top: 1rem;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  user-select: none;
+  font-weight: 700;
+  font-size: 1.25rem;
+  color: var(--zen-black);
+  letter-spacing: 0.05em;
+  cursor: default;
 }
 
 .uplift-label {
+  font-weight: 500;
   font-size: 1rem;
-  font-weight: 600;
-  color: var(--zen-black);
-  margin-bottom: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #333;
 }
 
 .uplift-amount {
-  font-size: 1.8rem;
-  font-weight: 800;
-  color: #C41E3A;
   display: flex;
   align-items: center;
-  justify-content: center;
   gap: 8px;
 }
 
 .arrow-icon {
-  display: inline-block;
-  width: 24px;
-  height: 24px;
+  stroke: #c41e3a;
+  transform: rotate(45deg);
 }
 
+/* Divider */
 .divider {
   border: none;
-  height: 2px;
-  background: var(--zen-pink-standard);
-  opacity: 0.3;
-  margin: 24px 0;
+  border-top: 1px solid var(--zen-pink-standard);
+  margin: 2rem 0;
 }
-
