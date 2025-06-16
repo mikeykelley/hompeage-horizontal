@@ -11,14 +11,13 @@
     <section class="calculator-container">
       <h1>Zenstores Calculator</h1>
 
-      <!-- Your full calculator HTML below -->
       <div class="category-selector">
         <label for="category">Business Category:</label>
         <select id="category" name="category">
-          <option value="fashion">Fashion & Apparel</option>
-          <option value="food">Food & Drink</option>
-          <option value="health">Health & Beauty</option>
-          <option value="other">Other</option>
+          <option value="Fashion & Apparel">Fashion & Apparel</option>
+          <option value="Food & Drink">Food & Drink</option>
+          <option value="Health & Beauty">Health & Beauty</option>
+          <option value="Other">Other</option>
         </select>
       </div>
 
@@ -34,9 +33,18 @@
 
       <div class="results">
         <h2>Estimated Challenges & Costs</h2>
-        <p id="resultsText">Adjust the inputs to see estimates.</p>
+        <ul id="challengesContainer">
+          <li>Adjust the inputs to see estimates.</li>
+        </ul>
+        <p id="size-of-prize">Size of the prize: <span>£0</span></p>
       </div>
 
+      <div>
+        <h3 id="quirksHeading"></h3>
+        <ul id="quirksContainer"></ul>
+      </div>
+
+      <div id="similarBusinesses"></div>
     </section>
 
     <section class="snake-container">
