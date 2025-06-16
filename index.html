@@ -4,94 +4,39 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Zenstores Calculator + Snake Progress</title>
-  <style>
-    :root {
-      --zen-pink: #ffebe7;
-      --zen-blue: #283CFF;
-      --zen-accent: #FFBEAF;
-      --font-family: 'Inter', sans-serif;
-    }
-
-    * {
-      box-sizing: border-box;
-    }
-
-    body, html {
-      margin: 0;
-      padding: 0;
-      height: 200vh; /* to enable scrolling */
-      font-family: var(--font-family);
-      background: #fff;
-      display: flex;
-      flex-direction: row;
-      height: 100vh;
-      overflow-x: hidden;
-    }
-
-    .page-container {
-      display: flex;
-      width: 100vw;
-      height: 100vh;
-    }
-
-    /* Left side: calculator container */
-    .calculator-container {
-      flex: 0 0 70%;
-      padding: 40px;
-      overflow-y: auto;
-      background: #f9f9f9;
-    }
-
-    /* Just placeholder styling for the calculator content */
-    .calculator-container h1 {
-      margin-top: 0;
-      font-weight: 700;
-      font-size: 2.5rem;
-      color: var(--zen-blue);
-    }
-
-    .calculator-placeholder {
-      margin-top: 2rem;
-      padding: 2rem;
-      background: white;
-      border-radius: 12px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-      font-size: 1.2rem;
-      color: #333;
-      min-height: 300px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    /* Right side: snake container */
-    .snake-container {
-      flex: 0 0 30%;
-      background: var(--zen-pink);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      padding: 0;
-      margin: 0;
-      overflow: hidden;
-    }
-
-    #snakeSvg {
-      width: 40px;
-      height: 90vh;
-      display: block;
-    }
-  </style>
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
   <div class="page-container">
     <section class="calculator-container">
       <h1>Zenstores Calculator</h1>
-      <div class="calculator-placeholder">
-        <!-- Replace this placeholder with your actual calculator content -->
-        Calculator goes here
+
+      <!-- Your full calculator HTML below -->
+      <div class="category-selector">
+        <label for="category">Business Category:</label>
+        <select id="category" name="category">
+          <option value="fashion">Fashion & Apparel</option>
+          <option value="food">Food & Drink</option>
+          <option value="health">Health & Beauty</option>
+          <option value="other">Other</option>
+        </select>
       </div>
+
+      <div class="order-slider">
+        <label for="orders">Monthly Orders: <span id="ordersValue">1000</span></label>
+        <input type="range" id="orders" name="orders" min="0" max="15000" step="1" value="1000" />
+      </div>
+
+      <div class="aov-input">
+        <label for="aov">Average Order Value (£):</label>
+        <input type="number" id="aov" name="aov" min="1" step="1" value="50" />
+      </div>
+
+      <div class="results">
+        <h2>Estimated Challenges & Costs</h2>
+        <p id="resultsText">Adjust the inputs to see estimates.</p>
+      </div>
+
     </section>
 
     <section class="snake-container">
@@ -125,19 +70,6 @@
     </section>
   </div>
 
-  <script>
-    window.addEventListener('scroll', () => {
-      const snakeProgress = document.getElementById('snakeProgress');
-      const pathLength = 1000;
-      snakeProgress.style.strokeDasharray = pathLength;
-
-      const scrollTop = window.scrollY;
-      const docHeight = document.body.scrollHeight - window.innerHeight;
-      const scrollPercent = Math.min(scrollTop / docHeight, 1);
-
-      const drawLength = pathLength * scrollPercent;
-      snakeProgress.style.strokeDashoffset = pathLength - drawLength;
-    });
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>
