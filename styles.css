@@ -60,6 +60,7 @@ body {
   padding: 0;
   box-shadow: none;
   box-sizing: border-box;
+  align-items: center; /* vertically center */
 }
 
 /* Title for central element */
