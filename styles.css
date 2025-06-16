@@ -5,6 +5,7 @@
   --zen-pink-standard: #FFBEAF;
   --zen-black: #052424;
   --zen-blue: #283CFF;
+  --zen-white: #FFFFFF
 }
 
 /* Base styles */
@@ -12,7 +13,7 @@ body {
   margin: 0;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   background: var(--zen-pink-light);
-  color: var(--zen-black);
+  color: var(--zen-white);
   display: flex;
   justify-content: center;
   align-items: center; /* vertically center */
