@@ -12,7 +12,7 @@
 /* Base styles */
 body {
   margin: 0;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'Inter', sans-serif;
   background: var(--zen-pink-light);
   color: var(--zen-black);
   display: flex;
