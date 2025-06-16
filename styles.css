@@ -1,321 +1,97 @@
-/* Color scheme */
-:root {
-  --zen-pink-light: #FFEFEB;
-  --zen-pink: #FFDFD7;
-  --zen-pink-standard: #FFBEAF;
-  --zen-black: #052424;
-  --zen-blue: #283CFF;
-}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Zenstores Homepage with Calculator + Snake Tracker</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="page-container">
+    <!-- Left side: calculator (was right) -->
+    <section class="calculator-container">
+      <div class="calculator current-logic">
+        <h2>Why should you care?</h2>
 
-/* Base styles */
-body {
-  margin: 0;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: var(--zen-pink-light);
-  color: var(--zen-black);
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  min-height: 100vh;
-  padding: 40px 20px;
-  box-sizing: border-box;
-  position: relative; /* to contain fixed elements */
-}
+        <!-- Wrap interactive area for glow -->
+        <div id="interactive-area">
+          <!-- Category -->
+          <div class="business-category">
+            <p>Select your business category:</p>
+            <div class="category-buttons">
+              <button data-category="Fashion & Apparel" class="category-btn selected" title="Fashion & Apparel">
+                👗<br /><span>Fashion & Apparel</span>
+              </button>
+              <button data-category="Food & Drink" class="category-btn" title="Food & Drink">
+                🍔<br /><span>Food & Drink</span>
+              </button>
+              <button data-category="Health & Beauty" class="category-btn" title="Health & Beauty">
+                💄<br /><span>Health & Beauty</span>
+              </button>
+              <button data-category="Other" class="category-btn" title="Other">
+                🏡<br /><span>Other</span>
+              </button>
+            </div>
+          </div>
 
-/* Calculator container - horizontal block */
-.calculator-container {
-  max-width: 600px;
-  width: 100%;
-  background: white;
-  border-radius: 12px;
-  padding: 24px 32px;
-  box-shadow: 0 12px 30px rgba(5, 36, 36, 0.15);
-  box-sizing: border-box;
-  z-index: 5; /* above background */
-}
+          <!-- Monthly orders -->
+          <label for="orders">Monthly Shipment Volume: <span id="orderValue">250</span></label>
+          <input type="range" id="orders" min="0" max="40" step="1" />
+          
+        </div>
+        <!-- End glow container -->
+          
+        <hr class="divider" />
 
-.calculator h2 {
-  font-weight: 700;
-  font-size: 2rem;
-  margin-bottom: 12px;
-  color: var(--zen-black);
-}
+        <h3>The hidden hurdles holding back growth:</h3>
+        <ul id="challengesContainer" class="challenges-list"></ul>
 
-/* Business category */
-.business-category p {
-  font-weight: 600;
-  margin-bottom: 12px;
-}
+        <div id="size-of-problem" class="revenue-uplift-box" data-value="0">
+          <p class="uplift-label">Estimated yearly missed revenue</p>
+          <div class="uplift-amount">
+            <svg class="arrow-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M6 6L18 18M18 18H10M18 18V10" stroke="#C41E3A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span class="amount">£0</span>
+          </div>
+        </div>
 
-.category-buttons {
-  display: flex;
-  gap: 12px;
-  margin-bottom: 20px;
-}
+        <hr class="divider" />
 
-.category-btn {
-  box-sizing: border-box;
-  border: 2px solid var(--zen-pink-standard);
-  background: var(--zen-pink-light);
-  font-weight: 700;
-  font-size: 0.9rem;
-  padding: 10px 8px;
-  border-radius: 12px;
-  cursor: pointer;
-  user-select: none;
-  width: 110px;
-  text-align: center;
-  transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, outline-color 0.3s ease;
-  outline: 2px solid transparent;
-  outline-offset: 0;
-  color: var(--zen-black);
-}
+        <h3 id="quirksHeading">Your quirks</h3>
+        <ul id="quirksContainer" class="quirks-list"></ul>
 
-.category-btn span {
-  font-size: 0.9rem;
-  display: block;
-  margin-top: 4px;
-}
+        <div id="similarBusinesses" class="similar-businesses-container"></div>
+      </div> <!-- close .calculator -->
+    </section> <!-- close .calculator-container -->
 
-.category-btn.selected {
-  background-color: var(--zen-blue);
-  color: white;
-  border-color: var(--zen-blue);
-  outline-color: rgba(40, 60, 255, 0.7);
-  outline-offset: 4px;
-  box-shadow: 0 0 8px 2px rgba(40, 60, 255, 0.6);
-}
+    <!-- Right side: homepage intro + snake tracker -->
+    <section class="homepage-intro-snake">
+      <section class="homepage-intro">
+        <h1>Upgrade your shipping. <br /><em><strong>From checkout to dispatch.</strong></em></h1>
+        <p>Zenstores connects your checkout with how you actually ship orders. Unlock smarter delivery, faster fulfilment, and big savings on postage - all through one seamless integration.</p>
 
-.category-btn:hover:not(.selected) {
-  background-color: var(--zen-pink-standard);
-  border-color: var(--zen-pink-standard);
-  color: var(--zen-black);
-}
+        <div class="buttons-row">
+          <button class="btn get-started">Get Started</button>
+          <button class="btn see-action">See it in action</button>
+        </div>
 
-/* Interactive area with padding and glow effect */
-#interactive-area {
-  padding: 10px;
-  border-radius: 8px;
-  background: white;
-  box-sizing: border-box;
-}
+        <div class="reviews-row">
+          <img src="https://cdn.prod.website-files.com/66977bd785453b9d7b04a8b2/6697d0e5c72c34008b472ec1_review-stars-shopifyappstore.svg" alt="Shopify App Store Reviews" />
+          <img src="https://cdn.prod.website-files.com/66977bd785453b9d7b04a8b2/6697d0e55dec634b9685e7bf_review-stars-capterra.svg" alt="Capterra Reviews" />
+        </div>
+      </section>
 
-#interactive-area.glow {
-  box-shadow: 0 0 15px 5px rgba(255, 189, 175, 0.6);
-  transition: box-shadow 0.3s ease-in-out;
-  border-radius: 8px;
-}
+      <!-- Snake progress tracker container -->
+      <div id="snakeTracker">
+        <svg id="snakeSvg" width="40" height="100%" viewBox="0 0 40 1000" preserveAspectRatio="none">
+          <path id="snakePath" d="M20 0 L20 1000" stroke="#283CFF" stroke-width="8" fill="none" stroke-linecap="round" />
+          <path id="snakeProgress" d="M20 0 L20 1000" stroke="#FFBEAF" stroke-width="8" fill="none" stroke-linecap="round" stroke-dasharray="1000" stroke-dashoffset="1000"/>
+        </svg>
+      </div>
+    </section>
+  </div> <!-- close .page-container -->
 
-/* Slider styles */
-#orders {
-  width: 100%;
-  height: 6px;
-  background: var(--zen-pink-standard);
-  border-radius: 3px;
-  outline: none;
-  cursor: pointer;
-  margin-bottom: 1rem;
-  -webkit-appearance: none;
-}
-
-#orders::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  width: 24px;
-  height: 24px;
-  background: var(--zen-blue);
-  border-radius: 50%;
-  cursor: pointer;
-  border: none;
-  box-shadow: 0 0 8px rgba(40, 60, 255, 0.6);
-  margin-top: -1px;
-  transition: background-color 0.3s ease;
-}
-
-#orders:hover::-webkit-slider-thumb {
-  background-color: #1f33cc;
-}
-
-/* Divider */
-.divider {
-  border: none;
-  border-top: 1px solid var(--zen-pink-standard);
-  margin: 24px 0;
-}
-
-/* Challenges list */
-.challenges-list {
-  list-style: none;
-  padding-left: 0;
-  margin-top: 0;
-  margin-bottom: 20px;
-}
-
-.challenges-list li {
-  background: var(--zen-pink-light);
-  padding: 8px 12px;
-  border-radius: 8px;
-  margin-bottom: 6px;
-  font-size: 0.95rem;
-  border-left: 4px solid var(--zen-pink-standard);
-}
-
-/* Quirks list */
-.quirks-list {
-  list-style: none;
-  padding-left: 0;
-  margin-top: 0;
-  margin-bottom: 5px;
-}
-
-.quirks-list li {
-  background: var(--zen-pink-light);
-  padding: 8px 12px;
-  border-radius: 8px;
-  margin-bottom: 2px;
-  font-size: 0.95rem;
-  border-left: 4px solid var(--zen-blue);
-}
-
-/* Revenue uplift box */
-.revenue-uplift-box {
-  background: var(--zen-pink);
-  padding: 20px;
-  border-radius: 12px;
-  margin: 20px 0;
-  text-align: center;
-  box-shadow: 0 4px 12px rgba(197, 30, 58, 0.2);
-}
-
-.uplift-label {
-  font-weight: 700;
-  font-size: 1.1rem;
-  margin-bottom: 12px;
-  color: var(--zen-black);
-}
-
-.uplift-amount {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  font-weight: 900;
-  font-size: 2rem;
-  color: var(--zen-pink-standard);
-}
-
-.arrow-icon {
-  stroke: var(--zen-pink-standard);
-  transform: rotate(-45deg);
-}
-
-/* Similar businesses container */
-.similar-businesses-container {
-  margin-top: 16px;
-  font-style: italic;
-  font-size: 0.9rem;
-  color: var(--zen-black);
-}
-
-/* Headings */
-h3 {
-  font-weight: 700;
-  font-size: 1.4rem;
-  margin-bottom: 8px;
-  color: var(--zen-black);
-}
-
-/* Responsive: full width on small screens */
-@media (max-width: 640px) {
-  .calculator-container {
-    padding: 16px 20px;
-    max-width: 100%;
-  }
-}
-
-
-/* --- SNAKE PROGRESS TRACKER (right side) --- */
-
-/* Container fixed on the right */
-.snake-container {
-  position: fixed;
-  top: 40px; /* match body padding */
-  right: 20px;
-  width: 60px;
-  height: calc(100vh - 80px); /* full viewport minus top+bottom padding */
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  pointer-events: none;
-  z-index: 10;
-}
-
-/* Vertical pink track line */
-.snake-line {
-  position: absolute;
-  top: 20px;
-  bottom: 20px;
-  left: 50%;
-  width: 4px;
-  background: var(--zen-pink-standard);
-  border-radius: 2px;
-  transform: translateX(-50%);
-  z-index: 1;
-  overflow: hidden;
-}
-
-/* Blue fill showing progress */
-.snake-line-fill {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  background: var(--zen-blue);
-  border-radius: 2px;
-  transition: height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  z-index: 2;
-  height: 0%; /* control with JS */
-}
-
-/* Circle steps */
-.snake-step {
-  width: 18px;
-  height: 18px;
-  border-radius: 50%;
-  background: var(--zen-pink-standard);
-  box-shadow: 0 0 5px rgba(255, 189, 175, 0.5);
-  transition: all 0.3s ease;
-  position: relative;
-  z-index: 3;
-  cursor: default;
-}
-
-/* Active step style - bigger, blue, glow, bounce */
-.snake-step.active {
-  width: 28px;
-  height: 28px;
-  background: var(--zen-blue);
-  box-shadow:
-    0 0 10px 4px rgba(40, 60, 255, 0.6),
-    0 0 15px 6px rgba(40, 60, 255, 0.4);
-  animation: bounce 1.2s infinite;
-}
-
-/* Bounce keyframes */
-@keyframes bounce {
-  0%, 100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-8px);
-  }
-}
-
-/* Optional labels below each step */
-.snake-label {
-  font-size: 0.75rem;
-  color: var(--zen-black);
-  margin-top: 6px;
-  text-align: center;
-  user-select: none;
-}
+  <script src="script.js"></script>
+</body>
+</html>
