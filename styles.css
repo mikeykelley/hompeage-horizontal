@@ -1,122 +1,214 @@
+/* Zenstores Homepage - Full CSS for 2-column layout with calculator and snake */
+
+/* Root colors */
 :root {
-  --zen-pink: #ffebe7;
+  --zen-pink-light: #FFEFEB;
+  --zen-pink: #FFDFD7;
+  --zen-pink-standard: #FFBEAF;
+  --zen-black: #052424;
   --zen-blue: #283CFF;
-  --zen-accent: #FFBEAF;
-  --font-family: 'Inter', sans-serif;
 }
 
+/* Reset and base */
 * {
   box-sizing: border-box;
 }
 
-body, html {
+body {
   margin: 0;
-  padding: 0;
-  height: 200vh; /* enough height to scroll */
-  font-family: var(--font-family);
-  background: #fff;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: var(--zen-pink-light);
+  color: var(--zen-black);
+  min-height: 100vh;
   display: flex;
-  flex-direction: row;
-  height: 100vh;
-  overflow-x: hidden;
+  justify-content: center;
+  align-items: flex-start;
+  overflow: hidden;
 }
 
 .page-container {
   display: flex;
-  width: 100vw;
-  height: 100vh;
-}
-
-/* Left side: calculator container */
-.calculator-container {
-  flex: 0 0 70%;
-  padding: 40px;
-  overflow-y: auto;
-  background: #f9f9f9;
-}
-
-/* Heading style */
-.calculator-container h1 {
-  margin-top: 0;
-  font-weight: 700;
-  font-size: 2.5rem;
-  color: var(--zen-blue);
-  user-select: none;
-}
-
-/* Category selector */
-.category-selector,
-.order-slider,
-.aov-input {
-  margin: 1.5rem 0;
-  font-size: 1.1rem;
-  user-select: none;
-}
-
-.category-selector label,
-.order-slider label,
-.aov-input label {
-  display: block;
-  margin-bottom: 0.5rem;
-  font-weight: 600;
-  color: var(--zen-blue);
-}
-
-.category-selector select,
-.order-slider input[type="range"],
-.aov-input input[type="number"] {
+  max-width: 1200px;
   width: 100%;
-  padding: 0.5rem;
-  font-size: 1rem;
-  border-radius: 8px;
-  border: 1px solid #ccc;
-  appearance: none;
-  background: white;
-  transition: border-color 0.3s ease;
+  height: 100vh; /* full viewport height */
+  padding: 40px 20px;
+  gap: 40px;
+  box-sizing: border-box;
 }
 
-.category-selector select:focus,
-.order-slider input[type="range"]:focus,
-.aov-input input[type="number"]:focus {
-  outline: none;
-  border-color: var(--zen-blue);
-}
-
-/* Display orders value */
-#ordersValue {
-  font-weight: 700;
-  margin-left: 0.5rem;
-  color: var(--zen-accent);
-}
-
-/* Results section */
-.results {
-  margin-top: 3rem;
-  padding: 2rem;
+/* Left side: Calculator container, 70% width */
+.calculator-container {
+  flex-basis: 70%;
   background: white;
   border-radius: 12px;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-  color: #333;
-  font-size: 1.2rem;
-  min-height: 150px;
-  user-select: none;
+  padding: 24px 32px;
+  box-shadow: 0 12px 30px rgba(5, 36, 36, 0.15);
+  overflow-y: auto;
+  height: 100vh;
+  position: relative;
+  color: var(--zen-black);
 }
 
-/* Right side: snake container */
+/* Right side: Snake / Progress animation container, 30% width */
 .snake-container {
-  flex: 0 0 30%;
-  background: var(--zen-pink);
+  flex-basis: 30%;
+  position: sticky;
+  top: 40px; /* match .page-container top padding */
+  height: calc(100vh - 80px); /* full height minus vertical padding */
   display: flex;
   justify-content: center;
-  align-items: center;
-  height: 100vh;
-  padding: 0;
-  margin: 0;
-  overflow: hidden;
+  align-items: flex-start;
+  padding-left: 12px;
+  box-sizing: border-box;
+  background: transparent;
 }
 
-#snakeSvg {
-  width: 40px;
-  height: 90vh;
-  display: block;
+/* Snake vertical bar */
+.snake {
+  width: 6px;
+  background: var(--zen-blue);
+  border-radius: 3px;
+  height: 100%;
+  position: relative;
 }
+
+/* Calculator content styles below */
+
+/* Headings */
+.calculator-container h2 {
+  font-weight: 700;
+  font-size: 2rem;
+  margin-bottom: 12px;
+  color: var(--zen-black);
+}
+
+/* Category buttons container */
+.category-buttons {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+/* Individual category button */
+.category-btn {
+  box-sizing: border-box;
+  border: 2px solid var(--zen-pink-standard);
+  background: var(--zen-pink-light);
+  font-weight: 700;
+  font-size: 0.9rem;
+  padding: 10px 8px;
+  border-radius: 12px;
+  cursor: pointer;
+  user-select: none;
+  width: 110px;
+  text-align: center;
+  transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, outline-color 0.3s ease;
+  outline: 2px solid transparent;
+  outline-offset: 0;
+  color: var(--zen-black);
+}
+
+.category-btn.selected {
+  background-color: var(--zen-blue);
+  color: white;
+  border-color: var(--zen-blue);
+  outline-color: rgba(40, 60, 255, 0.7);
+  outline-offset: 4px;
+  box-shadow: 0 0 8px 2px rgba(40, 60, 255, 0.6);
+}
+
+.category-btn:hover:not(.selected) {
+  background-color: var(--zen-pink-standard);
+  border-color: var(--zen-pink-standard);
+  color: var(--zen-black);
+}
+
+/* Slider styling */
+#orders {
+  width: 100%;
+  height: 6px;
+  background: var(--zen-pink-standard);
+  border-radius: 3px;
+  outline: none;
+  cursor: pointer;
+  margin-bottom: 1rem;
+  -webkit-appearance: none;
+}
+
+#orders::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 24px;
+  height: 24px;
+  background: var(--zen-blue);
+  border-radius: 50%;
+  cursor: pointer;
+  border: none;
+  box-shadow: 0 0 8px rgba(40, 60, 255, 0.6);
+  margin-top: -1px;
+  transition: background-color 0.3s ease;
+}
+
+#orders:hover::-webkit-slider-thumb {
+  background-color: #1f33cc;
+}
+
+/* Challenges and quirks lists */
+.challenges-list, .quirks-list {
+  list-style: none;
+  padding-left: 0;
+  margin-top: 20px;
+  color: var(--zen-black);
+}
+
+.challenges-list li, .quirks-list li {
+  margin-bottom: 12px;
+  font-size: 1rem;
+  line-height: 1.3;
+}
+
+/* Scrollbar styling for calculator container */
+.calculator-container::-webkit-scrollbar {
+  width: 8px;
+}
+
+.calculator-container::-webkit-scrollbar-track {
+  background: var(--zen-pink-light);
+  border-radius: 4px;
+}
+
+.calculator-container::-webkit-scrollbar-thumb {
+  background: var(--zen-pink-standard);
+  border-radius: 4px;
+}
+
+/* Responsive - Mobile stacking */
+@media (max-width: 900px) {
+  .page-container {
+    flex-direction: column;
+    height: auto;
+    padding: 20px 10px;
+  }
+  .calculator-container {
+    flex-basis: auto;
+    height: auto;
+    max-height: none;
+    padding: 16px 20px;
+    box-shadow: none;
+  }
+  .snake-container {
+    flex-basis: auto;
+    position: relative;
+    height: 150px;
+    margin-top: 20px;
+    padding-left: 0;
+    justify-content: center;
+    align-items: center;
+  }
+  .snake {
+    width: 80%;
+    height: 6px;
+    border-radius: 3px;
+  }
+}
+
+/* End of full CSS */
