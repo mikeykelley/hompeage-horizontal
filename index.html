@@ -65,32 +65,13 @@
       </div> <!-- close .calculator -->
     </section> <!-- close .calculator-container -->
 
-    <!-- Right side: homepage intro + snake tracker -->
-    <section class="homepage-intro-snake">
-      <section class="homepage-intro">
-        <h1>Upgrade your shipping. <br /><em><strong>From checkout to dispatch.</strong></em></h1>
-        <p>Zenstores connects your checkout with how you actually ship orders. Unlock smarter delivery, faster fulfilment, and big savings on postage - all through one seamless integration.</p>
-
-        <div class="buttons-row">
-          <button class="btn get-started">Get Started</button>
-          <button class="btn see-action">See it in action</button>
-        </div>
-
-        <div class="reviews-row">
-          <img src="https://cdn.prod.website-files.com/66977bd785453b9d7b04a8b2/6697d0e5c72c34008b472ec1_review-stars-shopifyappstore.svg" alt="Shopify App Store Reviews" />
-          <img src="https://cdn.prod.website-files.com/66977bd785453b9d7b04a8b2/6697d0e55dec634b9685e7bf_review-stars-capterra.svg" alt="Capterra Reviews" />
-        </div>
-      </section>
-
-      <!-- Snake progress tracker container -->
-      <div id="snakeTracker">
-        <svg id="snakeSvg" width="40" height="100%" viewBox="0 0 40 1000" preserveAspectRatio="none">
-          <path id="snakePath" d="M20 0 L20 1000" stroke="#283CFF" stroke-width="8" fill="none" stroke-linecap="round" />
-          <path id="snakeProgress" d="M20 0 L20 1000" stroke="#FFBEAF" stroke-width="8" fill="none" stroke-linecap="round" stroke-dasharray="1000" stroke-dashoffset="1000"/>
-        </svg>
-      </div>
-    </section>
-  </div> <!-- close .page-container -->
+    <!-- Right side: JUST the snake progress tracker -->
+<section class="snake-container">
+  <svg id="snakeSvg" width="40" height="100%" viewBox="0 0 40 1000" preserveAspectRatio="none" >
+    <path id="snakePath" d="M20 0 L20 1000" stroke="#283CFF" stroke-width="8" fill="none" stroke-linecap="round" />
+    <path id="snakeProgress" d="M20 0 L20 1000" stroke="#FFBEAF" stroke-width="8" fill="none" stroke-linecap="round" stroke-dasharray="1000" stroke-dashoffset="1000"/>
+  </svg>
+</section>
 
   <script src="script.js"></script>
 </body>
