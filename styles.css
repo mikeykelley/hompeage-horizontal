@@ -40,7 +40,6 @@ body {
   padding: 40px 48px;
   box-sizing: border-box;
   display: flex;
-  justify-content: center;
 }
 
 /* Container inside central box */
@@ -125,7 +124,7 @@ body {
 #interactive-area {
   padding: 10px;
   border-radius: 8px;
-  background: white;
+  background: var(--zen-grey);
   box-sizing: border-box;
 }
 
