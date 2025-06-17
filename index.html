@@ -2,41 +2,57 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Zenstores ROI Calculator</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Zenstores Homepage with Calculator</title>
   <link rel="stylesheet" href="styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet" />
 </head>
 <body>
-  <div class="container">
-    <div class="left" id="interactive-area">
-      <h1>What’s costing your business?</h1>
-      <div class="categories">
-        <button class="category-btn selected" data-category="Fashion & Apparel">Fashion & Apparel</button>
-        <button class="category-btn" data-category="Food & Drink">Food & Drink</button>
-        <button class="category-btn" data-category="Health & Beauty">Health & Beauty</button>
-        <button class="category-btn" data-category="Other">Other</button>
+  <div class="page-wrapper">
+
+    <!-- Left: Calculator -->
+    <div class="central-box">
+      <div class="page-container">
+        <section class="calculator-container">
+          <div class="calculator current-logic">
+            <h2>Why should you care?</h2>
+
+            <div id="interactive-area">
+              <!-- Category -->
+              <div class="business-category">
+                <p>Select your business category:</p>
+                <div class="category-buttons">
+                  <button data-category="Fashion & Apparel" class="category-btn selected" title="Fashion & Apparel">
+                    👗<br /><span>Fashion & Apparel</span>
+                  </button>
+                  <button data-category="Food & Drink" class="category-btn" title="Food & Drink">
+                    🍔<br /><span>Food & Drink</span>
+                  </button>
+                  <button data-category="Health & Beauty" class="category-btn" title="Health & Beauty">
+                    💄<br /><span>Health & Beauty</span>
+                  </button>
+                  <button data-category="Other" class="category-btn" title="Other">
+                    🏡<br /><span>Other</span>
+                  </button>
+                </div>
+              </div>
+              <!-- You can continue adding the rest of the calculator inputs here -->
+            </div>
+          </div>
+        </section>
       </div>
-      <div class="slider-container">
-        <label for="orders">Orders per month: <strong id="orderValue">0</strong></label>
-        <input type="range" id="orders" min="1" max="35" value="1"/>
-      </div>
-      <ul id="challengesContainer"></ul>
-      <p id="size-of-problem" data-value="0">Size of the prize: <span>£0</span></p>
-      <h3 id="quirksHeading"></h3>
-      <ul id="quirksContainer"></ul>
-      <div id="similarBusinesses"></div>
     </div>
+
+    <!-- Right: Snake Progress -->
     <div class="right">
-      <div class="progress-snake">
+      <div class="snake-progress">
         <div class="dot active"></div>
         <div class="dot"></div>
         <div class="dot"></div>
-        <div class="dot"></div>
-        <div class="dot"></div>
+        <!-- Add more dots as needed -->
       </div>
     </div>
-  </div>
 
-  <script src="script.js"></script>
+  </div>
 </body>
 </html>
