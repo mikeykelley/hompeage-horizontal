@@ -55,15 +55,17 @@ body {
   max-width: none;
 }
 
-/* Right side */
 .calculator-container {
   width: 100%;
-  background: transparent; /* no background, handled by central-box */
+  background: transparent;
   border-radius: 0;
   padding: 0;
   box-shadow: none;
   box-sizing: border-box;
-  align-items: center; /* vertically center */
+  display: flex;               /* Make it a flex container */
+  justify-content: center;     /* Center horizontally */
+  align-items: center;         /* Center vertically */
+  height: 100%;                /* Ensure it takes full height of parent */
 }
 
 /* Title for central element */
