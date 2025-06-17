@@ -56,16 +56,21 @@ body {
 }
 
 .calculator-container {
+  display: flex;
+  align-items: center;      /* Vertically center content */
+  justify-content: center;  /* Horizontally center if needed */
+  height: 100%;             /* Ensure it has full height */
+}
+
+.calculator {
   width: 100%;
-  background: transparent;
-  border-radius: 0;
-  padding: 0;
-  box-shadow: none;
-  box-sizing: border-box;
-  display: flex;               /* Make it a flex container */
-  justify-content: center;     /* Center horizontally */
-  align-items: center;         /* Center vertically */
-  height: 100%;                /* Ensure it takes full height of parent */
+}
+
+.care-heading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 150px; /* Adjust height based on how much vertical space you want */
 }
 
 /* Title for central element */
