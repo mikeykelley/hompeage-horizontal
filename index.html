@@ -6,20 +6,19 @@
   <title>Zenstores Homepage with Calculator</title>
   <link rel="stylesheet" href="styles.css" />
   <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet" />
-
 </head>
 <body>
   <div class="page-wrapper">
     <div class="central-box">
-      <div class="page-container">
+      <!-- Left side: Calculator -->
+      <div class="left-panel">
+        <section class="calculator-container">
+          <div class="calculator current-logic">
+            <div class="care-heading">
+              <h2>Why should you care?</h2>
+            </div>
 
-      <section class="calculator-container">
-  <div class="calculator current-logic">
-    <div class="care-heading">
-      <h2>Why should you care?</h2>
-    </div>
-
-            <!-- Wrap interactive area for glow -->
+            <!-- Interactive Area -->
             <div id="interactive-area">
               <!-- Category -->
               <div class="business-category">
@@ -40,41 +39,21 @@
                 </div>
               </div>
 
-              <!-- Monthly orders -->
-              <label for="orders">Monthly Shipment Volume: <span id="orderValue">250</span></label>
-              <input type="range" id="orders" min="0" max="40" step="1" />
-              
+              <!-- Additional content like sliders can go here -->
             </div>
-            <!-- End glow container -->
-            
-            <hr class="divider" />
+          </div>
+        </section>
+      </div>
 
-            <h3>The hidden hurdles holding back growth:</h3>
-            <ul id="challengesContainer" class="challenges-list"></ul>
-
-            <div id="size-of-problem" class="revenue-uplift-box" data-value="0">
-              <p class="uplift-label">Estimated yearly missed revenue</p>
-              <div class="uplift-amount">
-                <svg class="arrow-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M6 6L18 18M18 18H10M18 18V10" stroke="#C41E3A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-                <span class="amount">£0</span>
-              </div>
-            </div>
-
-            <hr class="divider" />
-
-            <h3 id="quirksHeading">Your quirks</h3>
-            <ul id="quirksContainer" class="quirks-list"></ul>
-
-            <div id="similarBusinesses" class="similar-businesses-container"></div>
-          </div> <!-- close .calculator -->
-        </section> <!-- close .calculator-container -->
-
-      </div> <!-- close .page-container -->
-    </div> <!-- close .central-box -->
-  </div> <!-- close .page-wrapper -->
-  
-  <script src="script.js"></script>
+      <!-- Right side: Scroll-based snake progress -->
+      <div class="right-panel">
+        <div class="snake-progress">
+          <div class="snake-step active"></div>
+          <div class="snake-step"></div>
+          <div class="snake-step"></div>
+        </div>
+      </div>
+    </div>
+  </div>
 </body>
 </html>
